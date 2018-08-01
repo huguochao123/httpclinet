@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shls.db.dao.product.ReceivablesDao">
+
+    <!-- ============================= ResultMap ============================= -->
+    <resultMap id="ReceivablesMap" type="com.shls.db.po.Receivables">
+        <result property="id" column="ID"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="dealContractName" column="DEAL_CONTRACT_NAME"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="dealContractSerialNumber" column="DEAL_CONTRACT_SERIAL_NUMBER"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="dealProjectName" column="DEAL_PROJECT_NAME"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="dealContractAmount" column="DEAL_CONTRACT_AMOUNT"  javaType="java.lang.Double" jdbcType="DOUBLE" />
+        <result property="dealBeginDate" column="DEAL_BEGIN_DATE"  javaType="java.sql.Date" jdbcType="DATE" />
+        <result property="dealEndDate" column="DEAL_END_DATE"  javaType="java.sql.Date" jdbcType="DATE" />
+        <result property="projectId" column="PROJECT_ID"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="supplierId" column="SUPPLIER_ID"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="pmtApplyFormNumber" column="PMT_APPLY_FORM_NUMBER"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="applyFormConfirmAmount" column="APPLY_FORM_CONFIRM_AMOUNT"  javaType="java.lang.Double" jdbcType="DOUBLE" />
+        <result property="applyAmountInConstCost" column="APPLY_AMOUNT_IN_CONST_COST"  javaType="java.lang.Double" jdbcType="DOUBLE" />
+        <result property="progPmtApprFormNumber" column="PROG_PMT_APPR_FORM_NUMBER"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="confirmedReceivablesAmount" column="CONFIRMED_RECEIVABLES_AMOUNT"  javaType="java.lang.Double" jdbcType="DOUBLE" />
+        <result property="region" column="REGION"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="contractValidityPeriod" column="CONTRACT_VALIDITY_PERIOD"  javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result property="contractSignDate" column="CONTRACT_SIGN_DATE"  javaType="java.sql.Date" jdbcType="DATE" />
+        <result property="receivablesInChecked" column="RECEIVABLES_IN_CHECKED"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="isDelete" column="IS_DELETE"  javaType="java.lang.Boolean" jdbcType="BIT" />
+        <result property="status" column="STATUS"  javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result property="creator" column="CREATOR"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="createdAt" column="CREATED_AT"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="updatedAt" column="UPDATED_AT"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="buyerId" column="BUYER_ID"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="paymentDueDate" column="PAYMENT_DUE_DATE"  javaType="java.sql.Date" jdbcType="DATE" />
+        <result property="buyerAddress" column="BUYER_ADDRESS"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="contractName" column="CONTRACT_NAME"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="contractDueDate" column="CONTRACT_DUE_DATE"  javaType="java.sql.Date" jdbcType="DATE" />
+        <result property="transferReceivablesAmount" column="TRANSFER_RECEIVABLES_AMOUNT"  javaType="java.lang.Double" jdbcType="DOUBLE" />
+        <result property="factoringFinancingAmount" column="FACTORING_FINANCING_AMOUNT"  javaType="java.lang.Double" jdbcType="DOUBLE" />
+        <result property="receivablesBeginDate" column="RECEIVABLES_BEGIN_DATE"  javaType="java.sql.Date" jdbcType="DATE" />
+        <result property="paidAmount" column="PAID_AMOUNT"  javaType="java.lang.Double" jdbcType="DOUBLE" />
+        <result property="earnest" column="EARNEST"  javaType="java.lang.Double" jdbcType="DOUBLE" />
+        <result property="supplierAddress" column="SUPPLIER_ADDRESS"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="guarantorId" column="GUARANTOR_ID"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="counterpartyType" column="COUNTERPARTY_TYPE"  javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result property="counterpartyId" column="COUNTERPARTY_ID"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="balancePaymentId" column="BALANCE_PAYMENT_ID"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="discountRate" column="DISCOUNT_RATE"  javaType="java.lang.Double" jdbcType="DOUBLE" />
+        <result property="debtorPaymentCfmNumber" column="DEBTOR_PAYMENT_CFM_NUMBER"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="debtorSubPaymentCfmNumber" column="DEBTOR_SUB_PAYMENT_CFM_NUMBER"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="financingAmount" column="FINANCING_AMOUNT"  javaType="java.lang.Double" jdbcType="DOUBLE" />
+        <result property="interestDeducted" column="INTEREST_DEDUCTED"  javaType="java.lang.Boolean" jdbcType="BIT" />
+        <result property="factoringDays" column="FACTORING_DAYS"  javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result property="rate" column="RATE"  javaType="java.lang.Double" jdbcType="DOUBLE" />
+        <result property="financingInterest" column="FINANCING_INTEREST"  javaType="java.lang.Double" jdbcType="DOUBLE" />
+        <result property="basicDealType" column="BASIC_DEAL_TYPE"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="bankAccountId" column="BANK_ACCOUNT_ID"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="supplierSubmitted" column="SUPPLIER_SUBMITTED"  javaType="java.lang.Boolean" jdbcType="BIT" />
+        <result property="projectCompanySubmitted" column="PROJECT_COMPANY_SUBMITTED"  javaType="java.lang.Boolean" jdbcType="BIT" />
+    </resultMap>
+
+    <!-- ============================= INSERT ============================= -->
+    <insert id="insert" keyProperty="id" >
+
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="BEFORE">
+                SELECT RECEIVABLES_SEQ.NEXTVAL AS id FROM dual
+        </selectKey>
+
+        INSERT INTO receivables( 
+                ID,
+                DEAL_CONTRACT_NAME,
+                DEAL_CONTRACT_SERIAL_NUMBER,
+                DEAL_PROJECT_NAME,
+                DEAL_CONTRACT_AMOUNT,
+                DEAL_BEGIN_DATE,
+                DEAL_END_DATE,
+                PROJECT_ID,
+                SUPPLIER_ID,
+                PMT_APPLY_FORM_NUMBER,
+                APPLY_FORM_CONFIRM_AMOUNT,
+                APPLY_AMOUNT_IN_CONST_COST,
+                PROG_PMT_APPR_FORM_NUMBER,
+                CONFIRMED_RECEIVABLES_AMOUNT,
+                REGION,
+                CONTRACT_VALIDITY_PERIOD,
+                CONTRACT_SIGN_DATE,
+                RECEIVABLES_IN_CHECKED,
+                IS_DELETE,
+                STATUS,
+                CREATOR,
+                CREATED_AT,
+                UPDATED_AT,
+                BUYER_ID,
+                PAYMENT_DUE_DATE,
+                BUYER_ADDRESS,
+                CONTRACT_NAME,
+                CONTRACT_DUE_DATE,
+                TRANSFER_RECEIVABLES_AMOUNT,
+                FACTORING_FINANCING_AMOUNT,
+                RECEIVABLES_BEGIN_DATE,
+                PAID_AMOUNT,
+                EARNEST,
+                SUPPLIER_ADDRESS,
+                GUARANTOR_ID,
+                COUNTERPARTY_TYPE,
+                COUNTERPARTY_ID,
+                BALANCE_PAYMENT_ID,
+                DISCOUNT_RATE,
+                DEBTOR_PAYMENT_CFM_NUMBER,
+                DEBTOR_SUB_PAYMENT_CFM_NUMBER,
+                FINANCING_AMOUNT,
+                INTEREST_DEDUCTED,
+                FACTORING_DAYS,
+                RATE,
+                FINANCING_INTEREST,
+                BASIC_DEAL_TYPE,
+                BANK_ACCOUNT_ID,
+                SUPPLIER_SUBMITTED,
+                PROJECT_COMPANY_SUBMITTED )
+        VALUES ( 
+                #{id ,jdbcType=BIGINT},
+                #{dealContractName ,jdbcType=VARCHAR},
+                #{dealContractSerialNumber ,jdbcType=VARCHAR},
+                #{dealProjectName ,jdbcType=VARCHAR},
+                #{dealContractAmount ,jdbcType=DOUBLE},
+                #{dealBeginDate ,jdbcType=DATE},
+                #{dealEndDate ,jdbcType=DATE},
+                #{projectId ,jdbcType=BIGINT},
+                #{supplierId ,jdbcType=BIGINT},
+                #{pmtApplyFormNumber ,jdbcType=VARCHAR},
+                #{applyFormConfirmAmount ,jdbcType=DOUBLE},
+                #{applyAmountInConstCost ,jdbcType=DOUBLE},
+                #{progPmtApprFormNumber ,jdbcType=VARCHAR},
+                #{confirmedReceivablesAmount ,jdbcType=DOUBLE},
+                #{region ,jdbcType=BIGINT},
+                #{contractValidityPeriod ,jdbcType=INTEGER},
+                #{contractSignDate ,jdbcType=DATE},
+                #{receivablesInChecked ,jdbcType=BIGINT},
+                #{isDelete ,jdbcType=BIT},
+                #{status ,jdbcType=INTEGER},
+                #{creator ,jdbcType=BIGINT},
+                #{createdAt ,jdbcType=BIGINT},
+                #{updatedAt ,jdbcType=BIGINT},
+                #{buyerId ,jdbcType=BIGINT},
+                #{paymentDueDate ,jdbcType=DATE},
+                #{buyerAddress ,jdbcType=VARCHAR},
+                #{contractName ,jdbcType=VARCHAR},
+                #{contractDueDate ,jdbcType=DATE},
+                #{transferReceivablesAmount ,jdbcType=DOUBLE},
+                #{factoringFinancingAmount ,jdbcType=DOUBLE},
+                #{receivablesBeginDate ,jdbcType=DATE},
+                #{paidAmount ,jdbcType=DOUBLE},
+                #{earnest ,jdbcType=DOUBLE},
+                #{supplierAddress ,jdbcType=VARCHAR},
+                #{guarantorId ,jdbcType=BIGINT},
+                #{counterpartyType ,jdbcType=INTEGER},
+                #{counterpartyId ,jdbcType=BIGINT},
+                #{balancePaymentId ,jdbcType=BIGINT},
+                #{discountRate ,jdbcType=DOUBLE},
+                #{debtorPaymentCfmNumber ,jdbcType=VARCHAR},
+                #{debtorSubPaymentCfmNumber ,jdbcType=VARCHAR},
+                #{financingAmount ,jdbcType=DOUBLE},
+                #{interestDeducted ,jdbcType=BIT},
+                #{factoringDays ,jdbcType=INTEGER},
+                #{rate ,jdbcType=DOUBLE},
+                #{financingInterest ,jdbcType=DOUBLE},
+                #{basicDealType ,jdbcType=VARCHAR},
+                #{bankAccountId ,jdbcType=BIGINT},
+                #{supplierSubmitted ,jdbcType=BIT},
+                #{projectCompanySubmitted ,jdbcType=BIT})
+    </insert>
+
+
+    <!-- ============================= UPDATE ============================= -->
+    <update id="update">
+        UPDATE receivables
+        <set>
+            DEAL_CONTRACT_NAME=#{dealContractName ,jdbcType=VARCHAR},
+            DEAL_CONTRACT_SERIAL_NUMBER=#{dealContractSerialNumber ,jdbcType=VARCHAR},
+            DEAL_PROJECT_NAME=#{dealProjectName ,jdbcType=VARCHAR},
+            DEAL_CONTRACT_AMOUNT=#{dealContractAmount ,jdbcType=DOUBLE},
+            DEAL_BEGIN_DATE=#{dealBeginDate ,jdbcType=DATE},
+            DEAL_END_DATE=#{dealEndDate ,jdbcType=DATE},
+            PROJECT_ID=#{projectId ,jdbcType=BIGINT},
+            SUPPLIER_ID=#{supplierId ,jdbcType=BIGINT},
+            PMT_APPLY_FORM_NUMBER=#{pmtApplyFormNumber ,jdbcType=VARCHAR},
+            APPLY_FORM_CONFIRM_AMOUNT=#{applyFormConfirmAmount ,jdbcType=DOUBLE},
+            APPLY_AMOUNT_IN_CONST_COST=#{applyAmountInConstCost ,jdbcType=DOUBLE},
+            PROG_PMT_APPR_FORM_NUMBER=#{progPmtApprFormNumber ,jdbcType=VARCHAR},
+            CONFIRMED_RECEIVABLES_AMOUNT=#{confirmedReceivablesAmount ,jdbcType=DOUBLE},
+            REGION=#{region ,jdbcType=BIGINT},
+            CONTRACT_VALIDITY_PERIOD=#{contractValidityPeriod ,jdbcType=INTEGER},
+            CONTRACT_SIGN_DATE=#{contractSignDate ,jdbcType=DATE},
+            RECEIVABLES_IN_CHECKED=#{receivablesInChecked ,jdbcType=BIGINT},
+            IS_DELETE=#{isDelete ,jdbcType=BIT},
+            STATUS=#{status ,jdbcType=INTEGER},
+            CREATOR=#{creator ,jdbcType=BIGINT},
+            CREATED_AT=#{createdAt ,jdbcType=BIGINT},
+            UPDATED_AT=#{updatedAt ,jdbcType=BIGINT},
+            BUYER_ID=#{buyerId ,jdbcType=BIGINT},
+            PAYMENT_DUE_DATE=#{paymentDueDate ,jdbcType=DATE},
+            BUYER_ADDRESS=#{buyerAddress ,jdbcType=VARCHAR},
+            CONTRACT_NAME=#{contractName ,jdbcType=VARCHAR},
+            CONTRACT_DUE_DATE=#{contractDueDate ,jdbcType=DATE},
+            TRANSFER_RECEIVABLES_AMOUNT=#{transferReceivablesAmount ,jdbcType=DOUBLE},
+            FACTORING_FINANCING_AMOUNT=#{factoringFinancingAmount ,jdbcType=DOUBLE},
+            RECEIVABLES_BEGIN_DATE=#{receivablesBeginDate ,jdbcType=DATE},
+            PAID_AMOUNT=#{paidAmount ,jdbcType=DOUBLE},
+            EARNEST=#{earnest ,jdbcType=DOUBLE},
+            SUPPLIER_ADDRESS=#{supplierAddress ,jdbcType=VARCHAR},
+            GUARANTOR_ID=#{guarantorId ,jdbcType=BIGINT},
+            COUNTERPARTY_TYPE=#{counterpartyType ,jdbcType=INTEGER},
+            COUNTERPARTY_ID=#{counterpartyId ,jdbcType=BIGINT},
+            BALANCE_PAYMENT_ID=#{balancePaymentId ,jdbcType=BIGINT},
+            DISCOUNT_RATE=#{discountRate ,jdbcType=DOUBLE},
+            DEBTOR_PAYMENT_CFM_NUMBER=#{debtorPaymentCfmNumber ,jdbcType=VARCHAR},
+            DEBTOR_SUB_PAYMENT_CFM_NUMBER=#{debtorSubPaymentCfmNumber ,jdbcType=VARCHAR},
+            FINANCING_AMOUNT=#{financingAmount ,jdbcType=DOUBLE},
+            INTEREST_DEDUCTED=#{interestDeducted ,jdbcType=BIT},
+            FACTORING_DAYS=#{factoringDays ,jdbcType=INTEGER},
+            RATE=#{rate ,jdbcType=DOUBLE},
+            FINANCING_INTEREST=#{financingInterest ,jdbcType=DOUBLE},
+            BASIC_DEAL_TYPE=#{basicDealType ,jdbcType=VARCHAR},
+            BANK_ACCOUNT_ID=#{bankAccountId ,jdbcType=BIGINT},
+            SUPPLIER_SUBMITTED=#{supplierSubmitted ,jdbcType=BIT},
+            PROJECT_COMPANY_SUBMITTED=#{projectCompanySubmitted ,jdbcType=BIT},
+        </set>
+        WHERE ID=#{id} 
+    </update>
+
+    <update id="updateIgnoreNull">
+        UPDATE receivables
+        <set>
+            <if test="dealContractName!= null">DEAL_CONTRACT_NAME=#{dealContractName},</if>
+            <if test="dealContractSerialNumber!= null">DEAL_CONTRACT_SERIAL_NUMBER=#{dealContractSerialNumber},</if>
+            <if test="dealProjectName!= null">DEAL_PROJECT_NAME=#{dealProjectName},</if>
+            <if test="dealContractAmount!= null">DEAL_CONTRACT_AMOUNT=#{dealContractAmount},</if>
+            <if test="dealBeginDate!= null">DEAL_BEGIN_DATE=#{dealBeginDate},</if>
+            <if test="dealEndDate!= null">DEAL_END_DATE=#{dealEndDate},</if>
+            <if test="projectId!= null">PROJECT_ID=#{projectId},</if>
+            <if test="supplierId!= null">SUPPLIER_ID=#{supplierId},</if>
+            <if test="pmtApplyFormNumber!= null">PMT_APPLY_FORM_NUMBER=#{pmtApplyFormNumber},</if>
+            <if test="applyFormConfirmAmount!= null">APPLY_FORM_CONFIRM_AMOUNT=#{applyFormConfirmAmount},</if>
+            <if test="applyAmountInConstCost!= null">APPLY_AMOUNT_IN_CONST_COST=#{applyAmountInConstCost},</if>
+            <if test="progPmtApprFormNumber!= null">PROG_PMT_APPR_FORM_NUMBER=#{progPmtApprFormNumber},</if>
+            <if test="confirmedReceivablesAmount!= null">CONFIRMED_RECEIVABLES_AMOUNT=#{confirmedReceivablesAmount},</if>
+            <if test="region!= null">REGION=#{region},</if>
+            <if test="contractValidityPeriod!= null">CONTRACT_VALIDITY_PERIOD=#{contractValidityPeriod},</if>
+            <if test="contractSignDate!= null">CONTRACT_SIGN_DATE=#{contractSignDate},</if>
+            <if test="receivablesInChecked!= null">RECEIVABLES_IN_CHECKED=#{receivablesInChecked},</if>
+            <if test="isDelete!= null">IS_DELETE=#{isDelete},</if>
+            <if test="status!= null">STATUS=#{status},</if>
+            <if test="creator!= null">CREATOR=#{creator},</if>
+            <if test="createdAt!= null">CREATED_AT=#{createdAt},</if>
+            <if test="updatedAt!= null">UPDATED_AT=#{updatedAt},</if>
+            <if test="buyerId!= null">BUYER_ID=#{buyerId},</if>
+            <if test="paymentDueDate!= null">PAYMENT_DUE_DATE=#{paymentDueDate},</if>
+            <if test="buyerAddress!= null">BUYER_ADDRESS=#{buyerAddress},</if>
+            <if test="contractName!= null">CONTRACT_NAME=#{contractName},</if>
+            <if test="contractDueDate!= null">CONTRACT_DUE_DATE=#{contractDueDate},</if>
+            <if test="transferReceivablesAmount!= null">TRANSFER_RECEIVABLES_AMOUNT=#{transferReceivablesAmount},</if>
+            <if test="factoringFinancingAmount!= null">FACTORING_FINANCING_AMOUNT=#{factoringFinancingAmount},</if>
+            <if test="receivablesBeginDate!= null">RECEIVABLES_BEGIN_DATE=#{receivablesBeginDate},</if>
+            <if test="paidAmount!= null">PAID_AMOUNT=#{paidAmount},</if>
+            <if test="earnest!= null">EARNEST=#{earnest},</if>
+            <if test="supplierAddress!= null">SUPPLIER_ADDRESS=#{supplierAddress},</if>
+            <if test="guarantorId!= null">GUARANTOR_ID=#{guarantorId},</if>
+            <if test="counterpartyType!= null">COUNTERPARTY_TYPE=#{counterpartyType},</if>
+            <if test="counterpartyId!= null">COUNTERPARTY_ID=#{counterpartyId},</if>
+            <if test="balancePaymentId!= null">BALANCE_PAYMENT_ID=#{balancePaymentId},</if>
+            <if test="discountRate!= null">DISCOUNT_RATE=#{discountRate},</if>
+            <if test="debtorPaymentCfmNumber!= null">DEBTOR_PAYMENT_CFM_NUMBER=#{debtorPaymentCfmNumber},</if>
+            <if test="debtorSubPaymentCfmNumber!= null">DEBTOR_SUB_PAYMENT_CFM_NUMBER=#{debtorSubPaymentCfmNumber},</if>
+            <if test="financingAmount!= null">FINANCING_AMOUNT=#{financingAmount},</if>
+            <if test="interestDeducted!= null">INTEREST_DEDUCTED=#{interestDeducted},</if>
+            <if test="factoringDays!= null">FACTORING_DAYS=#{factoringDays},</if>
+            <if test="rate!= null">RATE=#{rate},</if>
+            <if test="financingInterest!= null">FINANCING_INTEREST=#{financingInterest},</if>
+            <if test="basicDealType!= null">BASIC_DEAL_TYPE=#{basicDealType},</if>
+            <if test="bankAccountId!= null">BANK_ACCOUNT_ID=#{bankAccountId},</if>
+            <if test="supplierSubmitted!= null">SUPPLIER_SUBMITTED=#{supplierSubmitted},</if>
+            <if test="projectCompanySubmitted!= null">PROJECT_COMPANY_SUBMITTED=#{projectCompanySubmitted},</if>
+        </set>
+        WHERE ID=#{id} 
+    </update>
+
+
+    <!-- ============================= DELETE ============================= -->
+    <delete id="delete">
+        UPDATE receivables SET IS_DELETE = 1 
+        WHERE ID=#{id} 
+    </delete>
+
+    <delete id="deleteById">
+        UPDATE receivables SET IS_DELETE = 1 
+        WHERE ID=#{id} 
+    </delete>
+
+    <delete id="deleteAll">
+        UPDATE receivables SET IS_DELETE = 1 
+    </delete>
+
+    <delete id="deleteBy">
+        UPDATE receivables SET IS_DELETE = 1 
+        <include refid="whereSql"/> 
+    </delete>
+
+
+    <!-- ============================= SELECT ============================= -->
+    <select id="count" resultType="java.lang.Long">
+        SELECT COUNT(1) FROM receivables
+        <include refid="whereSql"/>
+    </select>
+
+    <select id="findById" resultMap="ReceivablesMap">
+        SELECT * FROM receivables
+        WHERE IS_DELETE = 0 AND ID=#{id} 
+    </select>
+
+    <select id="find" resultMap="ReceivablesMap">
+        SELECT
+        <if test="entity.fields == null">*</if>
+        <if test="entity.fields != null">
+            <foreach collection="entity.fields" item="field" separator=",">
+                ${field}
+            </foreach>
+        </if>
+        FROM receivables
+        <include refid="whereSql"/>
+        ORDER BY ${entity.orderBy} ${entity.order}
+    </select>
+
+    <select id="findByPage" resultMap="ReceivablesMap">
+        SELECT * FROM (
+            SELECT ROWNUM as rn, t1.* FROM (
+                SELECT
+                    <if test="entity.fields == null">*</if>
+                    <if test="entity.fields != null">
+                        <foreach collection="entity.fields" item="field" separator=",">
+                            ${field}
+                        </foreach>
+                    </if>
+                FROM receivables <include refid="whereSql"/>
+                ORDER BY ${entity.orderBy} ${entity.order} )t1
+            WHERE ROWNUM <![CDATA[<=]]> #{entity.offset} + #{entity.length} )t2
+        WHERE t2.rn > #{entity.offset}
+    </select>
+
+  <sql id="whereSql">
+       <where>
+            <if test="entity.eqParams != null">
+                <foreach collection="entity.eqParams" item="item">
+                    ${item.relation} ${item.key} = #{item.value}
+                </foreach>
+            </if>
+
+            <if test="entity.neqParams != null">
+                <foreach collection="entity.neqParams" item="item">
+                    ${item.relation} ${item.key} != #{item.value}
+                </foreach>
+            </if>
+
+            <if test="entity.gtParams != null">
+                <foreach collection="entity.gtParams" item="item">
+                    ${item.relation} ${item.key} > #{item.value}
+                </foreach>
+            </if>
+
+            <if test="entity.ltParams != null">
+                <foreach collection="entity.ltParams" item="item">
+                    ${item.relation} ${item.key} <![CDATA[<]]> #{item.value}
+                </foreach>
+            </if>
+
+            <if test="entity.gteParams != null">
+                <foreach collection="entity.gteParams" item="item" >
+                    ${item.relation} ${item.key} >= #{item.value}
+                </foreach>
+            </if>
+
+            <if test="entity.lteParams != null">
+                <foreach collection="entity.lteParams" item="item" >
+                    ${item.relation} ${item.key} <![CDATA[<=]]> #{item.value}
+                </foreach>
+            </if>
+
+            <if test="entity.likeParams != null">
+                <foreach collection="entity.likeParams" item="item" >
+                    ${item.relation} LOWER(${item.key}) LIKE LOWER(concat(concat('%',#{item.value}),'%'))
+                </foreach>
+            </if>
+
+            <if test="entity.isNullParams != null">
+                <foreach collection="entity.isNullParams" item="item" >
+                    ${item.relation} ${item.key} IS NULL
+                </foreach>
+            </if>
+
+            <if test="entity.isNotNullParams != null">
+                <foreach collection="entity.isNotNullParams" item="item" >
+                    ${item.relation} ${item.key} IS NOT NULL
+                </foreach>
+            </if>
+
+            <if test="entity.inParams != null">
+                <foreach collection="entity.inParams" item="item">
+                    ${item.relation} ${item.key} IN (
+                    <foreach collection="item.value" item="inItem" separator=",">
+                        ${inItem}
+                    </foreach>)
+                </foreach>
+            </if>
+
+            <if test="entity.notInParams != null">
+                <foreach collection="entity.notInParams" item="item">
+                    ${item.relation} ${item.key} NOT IN (
+                    <foreach collection="item.value" item="notInItem" separator=",">
+                        ${notInItem}
+                    </foreach>)
+                </foreach>
+            </if>
+
+        </where>
+    </sql>
+
+<!--自动生成代码结束, 请勿修改以上代码, 也不要删除此行注释-->
+
+</mapper>

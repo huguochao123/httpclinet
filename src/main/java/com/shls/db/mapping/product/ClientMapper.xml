@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC  "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shls.db.dao.product.ClientDao">
+    <!-- ============================= ResultMap ============================= -->
+    <resultMap id="ClientMap" type="com.shls.db.po.Client">
+        <result property="id" column="ID"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="name" column="NAME"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="shortName" column="SHORT_NAME"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="loginPassword" column="LOGIN_PASSWORD"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="isDelete" column="IS_DELETE"  javaType="java.lang.Boolean" jdbcType="BIT" />
+        <result property="status" column="STATUS"  javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result property="creator" column="CREATOR"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="createdAt" column="CREATED_AT"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="updatedAt" column="UPDATED_AT"  javaType="java.lang.Long" jdbcType="BIGINT" />
+        <result property="clientType" column="CLIENT_TYPE"  javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result property="uscc" column="USCC"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="registrationNumber" column="REGISTRATION_NUMBER"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="englishName" column="ENGLISH_NAME"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="loginAccount" column="LOGIN_ACCOUNT"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="authProgress" column="AUTH_PROGRESS"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="identTyoeCode" column="IDENT_TYOE_CODE"  javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="identNumber" column="IDENT_NUMBER"  javaType="java.lang.String" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!-- ============================= INSERT ============================= -->
+    <insert id="insert" keyProperty="id" >
+
+        <selectKey keyProperty="id" resultType="java.lang.Long" order="BEFORE">
+                SELECT CLIENT_SEQ.NEXTVAL AS id FROM dual
+        </selectKey>
+
+        INSERT INTO client( 
+                ID,
+                NAME,
+                SHORT_NAME,
+                LOGIN_PASSWORD,
+                IS_DELETE,
+                STATUS,
+                CREATOR,
+                CREATED_AT,
+                UPDATED_AT,
+                CLIENT_TYPE,
+                USCC,
+                REGISTRATION_NUMBER,
+                ENGLISH_NAME,
+                LOGIN_ACCOUNT,
+                AUTH_PROGRESS,
+                IDENT_TYOE_CODE,
+                IDENT_NUMBER )
+        VALUES ( 
+                #{id ,jdbcType=BIGINT},
+                #{name ,jdbcType=VARCHAR},
+                #{shortName ,jdbcType=VARCHAR},
+                #{loginPassword ,jdbcType=VARCHAR},
+                #{isDelete ,jdbcType=BIT},
+                #{status ,jdbcType=INTEGER},
+                #{creator ,jdbcType=BIGINT},
+                #{createdAt ,jdbcType=BIGINT},
+                #{updatedAt ,jdbcType=BIGINT},
+                #{clientType ,jdbcType=INTEGER},
+                #{uscc ,jdbcType=VARCHAR},
+                #{registrationNumber ,jdbcType=VARCHAR},
+                #{englishName ,jdbcType=VARCHAR},
+                #{loginAccount ,jdbcType=VARCHAR},
+                #{authProgress ,jdbcType=VARCHAR},
+                #{identTyoeCode ,jdbcType=VARCHAR},
+                #{identNumber ,jdbcType=VARCHAR})
+    </insert>
+
+
+    <!-- ============================= UPDATE ============================= -->
+    <update id="update">
+        UPDATE client
+        <set>
+            NAME=#{name ,jdbcType=VARCHAR},
+            SHORT_NAME=#{shortName ,jdbcType=VARCHAR},
+            LOGIN_PASSWORD=#{loginPassword ,jdbcType=VARCHAR},
+            IS_DELETE=#{isDelete ,jdbcType=BIT},
+            STATUS=#{status ,jdbcType=INTEGER},
+            CREATOR=#{creator ,jdbcType=BIGINT},
+            CREATED_AT=#{createdAt ,jdbcType=BIGINT},
+            UPDATED_AT=#{updatedAt ,jdbcType=BIGINT},
+            CLIENT_TYPE=#{clientType ,jdbcType=INTEGER},
+            USCC=#{uscc ,jdbcType=VARCHAR},
+            REGISTRATION_NUMBER=#{registrationNumber ,jdbcType=VARCHAR},
+            ENGLISH_NAME=#{englishName ,jdbcType=VARCHAR},
+            LOGIN_ACCOUNT=#{loginAccount ,jdbcType=VARCHAR},
+            AUTH_PROGRESS=#{authProgress ,jdbcType=VARCHAR},
+            IDENT_TYOE_CODE=#{identTyoeCode ,jdbcType=VARCHAR},
+            IDENT_NUMBER=#{identNumber ,jdbcType=VARCHAR},
+        </set>
+        WHERE ID=#{id} 
+    </update>
+
+    <update id="updateIgnoreNull">
+        UPDATE client
+        <set>
+            <if test="name!= null">NAME=#{name},</if>
+            <if test="shortName!= null">SHORT_NAME=#{shortName},</if>
+            <if test="loginPassword!= null">LOGIN_PASSWORD=#{loginPassword},</if>
+            <if test="isDelete!= null">IS_DELETE=#{isDelete},</if>
+            <if test="status!= null">STATUS=#{status},</if>
+            <if test="creator!= null">CREATOR=#{creator},</if>
+            <if test="createdAt!= null">CREATED_AT=#{createdAt},</if>
+            <if test="updatedAt!= null">UPDATED_AT=#{updatedAt},</if>
+            <if test="clientType!= null">CLIENT_TYPE=#{clientType},</if>
+            <if test="uscc!= null">USCC=#{uscc},</if>
+            <if test="registrationNumber!= null">REGISTRATION_NUMBER=#{registrationNumber},</if>
+            <if test="englishName!= null">ENGLISH_NAME=#{englishName},</if>
+            <if test="loginAccount!= null">LOGIN_ACCOUNT=#{loginAccount},</if>
+            <if test="authProgress!= null">AUTH_PROGRESS=#{authProgress},</if>
+            <if test="identTyoeCode!= null">IDENT_TYOE_CODE=#{identTyoeCode},</if>
+            <if test="identNumber!= null">IDENT_NUMBER=#{identNumber},</if>
+        </set>
+        WHERE ID=#{id} 
+    </update>
+
+
+    <!-- ============================= DELETE ============================= -->
+    <delete id="delete">
+        UPDATE client SET IS_DELETE = 1 
+        WHERE ID=#{id} 
+    </delete>
+
+    <delete id="deleteById">
+        UPDATE client SET IS_DELETE = 1 
+        WHERE ID=#{id} 
+    </delete>
+
+    <delete id="deleteAll">
+        UPDATE client SET IS_DELETE = 1 
+    </delete>
+
+    <delete id="deleteBy">
+        UPDATE client SET IS_DELETE = 1 
+        <include refid="whereSql"/> 
+    </delete>
+
+
+    <!-- ============================= SELECT ============================= -->
+    <select id="count" resultType="java.lang.Long">
+        SELECT COUNT(1) FROM client
+        <include refid="whereSql"/>
+    </select>
+
+    <select id="findById" resultMap="ClientMap">
+        SELECT * FROM client
+        WHERE IS_DELETE = 0 AND ID=#{id} 
+    </select>
+
+    <select id="find" resultMap="ClientMap">
+        SELECT
+        <if test="entity.fields == null">*</if>
+        <if test="entity.fields != null">
+            <foreach collection="entity.fields" item="field" separator=",">
+                ${field}
+            </foreach>
+        </if>
+        FROM client
+        <include refid="whereSql"/>
+        ORDER BY ${entity.orderBy} ${entity.order}
+    </select>
+
+    <select id="findByPage" resultMap="ClientMap">
+        SELECT * FROM (
+            SELECT ROWNUM as rn, t1.* FROM (
+                SELECT
+                    <if test="entity.fields == null">*</if>
+                    <if test="entity.fields != null">
+                        <foreach collection="entity.fields" item="field" separator=",">
+                            ${field}
+                        </foreach>
+                    </if>
+                FROM client <include refid="whereSql"/>
+                ORDER BY ${entity.orderBy} ${entity.order} )t1
+            WHERE ROWNUM <![CDATA[<=]]> #{entity.offset} + #{entity.length} )t2
+        WHERE t2.rn > #{entity.offset}
+    </select>
+
+  <sql id="whereSql">
+       <where>
+            <if test="entity.eqParams != null">
+                <foreach collection="entity.eqParams" item="item">
+                    ${item.relation} ${item.key} = #{item.value}
+                </foreach>
+            </if>
+
+            <if test="entity.neqParams != null">
+                <foreach collection="entity.neqParams" item="item">
+                    ${item.relation} ${item.key} != #{item.value}
+                </foreach>
+            </if>
+
+            <if test="entity.gtParams != null">
+                <foreach collection="entity.gtParams" item="item">
+                    ${item.relation} ${item.key} > #{item.value}
+                </foreach>
+            </if>
+
+            <if test="entity.ltParams != null">
+                <foreach collection="entity.ltParams" item="item">
+                    ${item.relation} ${item.key} <![CDATA[<]]> #{item.value}
+                </foreach>
+            </if>
+
+            <if test="entity.gteParams != null">
+                <foreach collection="entity.gteParams" item="item" >
+                    ${item.relation} ${item.key} >= #{item.value}
+                </foreach>
+            </if>
+
+            <if test="entity.lteParams != null">
+                <foreach collection="entity.lteParams" item="item" >
+                    ${item.relation} ${item.key} <![CDATA[<=]]> #{item.value}
+                </foreach>
+            </if>
+
+            <if test="entity.likeParams != null">
+                <foreach collection="entity.likeParams" item="item" >
+                    ${item.relation} LOWER(${item.key}) LIKE LOWER(concat(concat('%',#{item.value}),'%'))
+                </foreach>
+            </if>
+
+            <if test="entity.isNullParams != null">
+                <foreach collection="entity.isNullParams" item="item" >
+                    ${item.relation} ${item.key} IS NULL
+                </foreach>
+            </if>
+
+            <if test="entity.isNotNullParams != null">
+                <foreach collection="entity.isNotNullParams" item="item" >
+                    ${item.relation} ${item.key} IS NOT NULL
+                </foreach>
+            </if>
+
+            <if test="entity.inParams != null">
+                <foreach collection="entity.inParams" item="item">
+                    ${item.relation} ${item.key} IN (
+                    <foreach collection="item.value" item="inItem" separator=",">
+                        ${inItem}
+                    </foreach>)
+                </foreach>
+            </if>
+
+            <if test="entity.notInParams != null">
+                <foreach collection="entity.notInParams" item="item">
+                    ${item.relation} ${item.key} NOT IN (
+                    <foreach collection="item.value" item="notInItem" separator=",">
+                        ${notInItem}
+                    </foreach>)
+                </foreach>
+            </if>
+
+        </where>
+    </sql>
+
+<!--自动生成代码结束, 请勿修改以上代码, 也不要删除此行注释-->
+
+</mapper>
